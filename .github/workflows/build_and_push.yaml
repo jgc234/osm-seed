@@ -1,0 +1,40 @@
+# .github/workflows/build-and-publish.yml
+name: Build OSM‑Seed Containers
+
+on:
+  push:
+    paths:
+      - 'images/**'
+      - 'Dockerfile*'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repo
+      uses: actions/checkout@v4
+
+    - name: Set up QEMU (for multi-arch builds, optional)
+      uses: docker/setup-qemu-action@v3
+
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v3
+
+    - name: Log in to GitHub Container Registry
+      uses: docker/login-action@v2
+      with:
+        registry: ghcr.io
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: build osm-processor
+      run: |
+        name=osm-processor \
+        tag=osmseed-${name} \
+        version=latest \
+        imagename=ghcr.io/${{ github.repository_owner }}/${tag}:${version} \
+        docker build \
+          --tag ${imagename} \
+          images/${name}/ \
+        docker push ${tag}:${version}
