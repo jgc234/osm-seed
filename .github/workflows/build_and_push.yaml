@@ -1,8 +1,12 @@
 name: Build Containers
+
 on:
   push:
+    paths:
+      - 'images/**'
+      - 'Dockerfile*'
   workflow_dispatch:
-
+      
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -25,11 +29,9 @@ jobs:
 
       - name: build osm-processor
         run: |
-          name=osm-processor \
-          tag=osmseed-${name} \
-          version=latest \
-          imagename=ghcr.io/${{ github.repository_owner }}/${tag}:${version} \
-          docker build \
-            --tag ${imagename} \
-            images/${name}/ \
+          name=osm-processor
+          tag=osmseed-${name}
+          version=latest
+          imagename=ghcr.io/${{ github.repository_owner }}/${tag}:${version}
+          docker build --tag ${imagename} images/${name}/
           docker push ${tag}:${version}
