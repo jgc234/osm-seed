@@ -2,9 +2,9 @@ name: Build Containers
 
 on:
   push:
-    paths:
-      - 'images/**'
-      - 'Dockerfile*'
+#    paths:
+#      - 'images/**'
+#      - 'Dockerfile*'
   workflow_dispatch:
       
 jobs:
