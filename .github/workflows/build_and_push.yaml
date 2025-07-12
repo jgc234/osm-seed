@@ -2,9 +2,11 @@ name: Build Containers
 
 on:
   push:
-#    paths:
-#      - 'images/**'
-#      - 'Dockerfile*'
+    paths:
+      - 'images/**'
+      - 'Dockerfile*'
+      - '.github/workflows/build_and_push.yaml'
+      
   workflow_dispatch:
       
 jobs:
@@ -34,4 +36,4 @@ jobs:
           version=latest
           imagename=ghcr.io/${{ github.repository_owner }}/${tag}:${version}
           docker build --tag ${imagename} images/${name}/
-          docker push ${tag}:${version}
+          docker push ${imagename}
