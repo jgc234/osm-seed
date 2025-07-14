@@ -60,7 +60,6 @@ jobs:
           push: true
           tags:
             - ${{ env.REGISTRY }}/${{ github.repository_owner }}/osmseed-populate-apidb:v1
-            - ${{ env.REGISTRY }}/${{ github.repository_owner }}/osmseed-populate-apidb:latest
           labels: ${{ steps.meta.outputs.labels }}
 
       - name: build db
@@ -70,7 +69,6 @@ jobs:
           push: true
           tags:
             - ${{ env.REGISTRY }}/${{ github.repository_owner }}/osmseed-db:v1
-            - ${{ env.REGISTRY }}/${{ github.repository_owner }}/osmseed-db:latest
           labels: ${{ steps.meta.outputs.labels }}
 
       - name: build web
@@ -80,5 +78,4 @@ jobs:
           push: true
           tags:
             - ${{ env.REGISTRY }}/${{ github.repository_owner }}/osmseed-web:v1
-            - ${{ env.REGISTRY }}/${{ github.repository_owner }}/osmseed-web:latest
           labels: ${{ steps.meta.outputs.labels }}
