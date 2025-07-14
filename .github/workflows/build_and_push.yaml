@@ -41,31 +41,54 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Docker meta
+        id: meta
+        uses: docker/metadata-action@v5
+
       - name: build osm-processor
         uses: docker/build-push-action@v6
         with:
           context: ./images/osm-processor/
+          platforms:
+            - linux/amd64
           push: true
-          tags: ${{ env.REGISTRY }}/${{ github.repository_owner }}/osmseed-osm-processor:v1
+          tags:
+            - ${{ env.REGISTRY }}/${{ github.repository_owner }}/osmseed-osm-processor:v1
+            - ${{ env.REGISTRY }}/${{ github.repository_owner }}/osmseed-osm-processor:latest
+          labels: ${{ steps.meta.outputs.labels }}
 
       - name: build populate-apidb
         uses: docker/build-push-action@v6
         with:
           context: ./images/populate-apidb/
+          platforms:
+            - linux/amd64
           push: true
-          tags: ${{ env.REGISTRY }}/${{ github.repository_owner }}/osmseed-populate-apidb:v1
+          tags:
+            - ${{ env.REGISTRY }}/${{ github.repository_owner }}/osmseed-populate-apidb:v1
+            - ${{ env.REGISTRY }}/${{ github.repository_owner }}/osmseed-populate-apidb:latest
+          labels: ${{ steps.meta.outputs.labels }}
 
       - name: build db
         uses: docker/build-push-action@v6
         with:
           context: ./images/db/
+          platforms:
+            - linux/amd64
           push: true
-          tags: ${{ env.REGISTRY }}/${{ github.repository_owner }}/osmseed-db:v1
+          tags:
+            - ${{ env.REGISTRY }}/${{ github.repository_owner }}/osmseed-db:v1
+            - ${{ env.REGISTRY }}/${{ github.repository_owner }}/osmseed-db:latest
+          labels: ${{ steps.meta.outputs.labels }}
 
       - name: build web
         uses: docker/build-push-action@v6
         with:
           context: ./images/web/
+          platforms:
+            - linux/amd64
           push: true
-          tags: ${{ env.REGISTRY }}/${{ github.repository_owner }}/osmseed-web:v1
-          
+          tags:
+            - ${{ env.REGISTRY }}/${{ github.repository_owner }}/osmseed-web:v1
+            - ${{ env.REGISTRY }}/${{ github.repository_owner }}/osmseed-web:latest
+          labels: ${{ steps.meta.outputs.labels }}
