@@ -48,3 +48,24 @@ jobs:
           push: true
           tags: ${{ env.REGISTRY }}/${{ github.repository_owner }}/osmseed-osm-processor:v1
 
+      - name: build populate-apidb
+        uses: docker/build-push-action@v6
+        with:
+          context: ./images/populate-apidb/
+          push: true
+          tags: ${{ env.REGISTRY }}/${{ github.repository_owner }}/osmseed-populate-apidb:v1
+
+      - name: build db
+        uses: docker/build-push-action@v6
+        with:
+          context: ./images/db/
+          push: true
+          tags: ${{ env.REGISTRY }}/${{ github.repository_owner }}/osmseed-db:v1
+
+      - name: build web
+        uses: docker/build-push-action@v6
+        with:
+          context: ./images/web/
+          push: true
+          tags: ${{ env.REGISTRY }}/${{ github.repository_owner }}/osmseed-web:v1
+          
