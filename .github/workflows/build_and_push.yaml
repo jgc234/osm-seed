@@ -50,9 +50,9 @@ jobs:
         with:
           context: ./images/osm-processor/
           push: true
-          tags:
-            - ghcr.io/jgc234/osmseed-osm-processor:latest
-            - ghcr.io/jgc234/osmseed-osm-processor:v1
+          tags: |
+            ghcr.io/jgc234/osmseed-osm-processor:latest
+            ghcr.io/jgc234/osmseed-osm-processor:v1
           labels: ${{ steps.meta.outputs.labels }}
 
       - name: build populate-apidb
@@ -60,7 +60,9 @@ jobs:
         with:
           context: ./images/populate-apidb/
           push: true
-          tags: ${{ env.REGISTRY }}/${{ github.repository_owner }}/osmseed-populate-apidb:latest
+          tags: |
+            ghcr.io/jgc234/osmseed-populate-apidb:latest
+            ghcr.io/jgc234/osmseed-populate-apidb:v1
           labels: ${{ steps.meta.outputs.labels }}
 
       - name: build db
@@ -68,7 +70,9 @@ jobs:
         with:
           context: ./images/db/
           push: true
-          tags: ${{ env.REGISTRY }}/${{ github.repository_owner }}/osmseed-db:latest
+          tags: |
+            ghcr.io/jgc234/osmseed-db:latest
+            ghcr.io/jgc234/osmseed-db:v1
           labels: ${{ steps.meta.outputs.labels }}
 
       - name: build web
@@ -76,5 +80,7 @@ jobs:
         with:
           context: ./images/web/
           push: true
-          tags: ${{ env.REGISTRY }}/${{ github.repository_owner }}/osmseed-web:latest
+          tags: |
+            ghcr.io/jgc234/osmseed-web:latest
+            ghcr.io/jgc234/osmseed-web:v1
           labels: ${{ steps.meta.outputs.labels }}
