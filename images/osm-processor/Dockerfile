@@ -28,7 +28,7 @@ RUN set -ex \
     && strip planet-dump-ng
 
 FROM debian:bookworm-slim
-ENV workdir /mnt/data
+ENV workdir=/mnt/data
 WORKDIR $workdir
 
 RUN set -ex \
