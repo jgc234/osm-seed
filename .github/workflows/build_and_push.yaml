@@ -49,8 +49,6 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           context: ./images/osm-processor/
-          platforms:
-            - linux/amd64
           push: true
           tags:
             - ${{ env.REGISTRY }}/${{ github.repository_owner }}/osmseed-osm-processor:v1
@@ -61,8 +59,6 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           context: ./images/populate-apidb/
-          platforms:
-            - linux/amd64
           push: true
           tags:
             - ${{ env.REGISTRY }}/${{ github.repository_owner }}/osmseed-populate-apidb:v1
@@ -73,8 +69,6 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           context: ./images/db/
-          platforms:
-            - linux/amd64
           push: true
           tags:
             - ${{ env.REGISTRY }}/${{ github.repository_owner }}/osmseed-db:v1
@@ -85,8 +79,6 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           context: ./images/web/
-          platforms:
-            - linux/amd64
           push: true
           tags:
             - ${{ env.REGISTRY }}/${{ github.repository_owner }}/osmseed-web:v1
