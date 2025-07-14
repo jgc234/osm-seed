@@ -1,4 +1,4 @@
-FROM ghcr.io/jgc234/osmseed-osm-processor:v1
+FROM ghcr.io/jgc234/osmseed-osm-processor:latest
 
 VOLUME /mnt/data
 COPY ./start.sh /
