@@ -54,6 +54,7 @@ RUN set -ex \
         libprotobuf32 \
         libprotobuf-lite32 \
         libosmpbf1 \
+        wget \
     && rm -rf /var/lib/apt/lists/*
 
 COPY --from=builder /opt/planet-dump-ng/planet-dump-ng /usr/local/bin/planet-dump-ng
