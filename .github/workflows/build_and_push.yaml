@@ -44,7 +44,7 @@ jobs:
       - name: build osm-processor
         uses: docker/build-push-action@v6
         with:
-          context: "{{defaultContext}}/images/osm-processor"
+          context: ./images/osm-processor/
           push: true
-          tags: ${{ github.repository_owner }}/osmseed-osm-processor:v1
+          tags: ${{ env.REGISTRY }}/${{ github.repository_owner }}/osmseed-osm-processor:v1
 
