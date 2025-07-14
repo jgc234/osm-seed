@@ -50,7 +50,9 @@ jobs:
         with:
           context: ./images/osm-processor/
           push: true
-          tags: ${{ env.REGISTRY }}/${{ github.repository_owner }}/osmseed-osm-processor:latest
+          tags:
+            - ghcr.io/jgc234/osmseed-osm-processor:latest
+            - ghcr.io/jgc234/osmseed-osm-processor:v1
           labels: ${{ steps.meta.outputs.labels }}
 
       - name: build populate-apidb
